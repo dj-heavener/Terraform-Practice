@@ -32,5 +32,4 @@ echo '<html><head><title>Taco Team Server 2</title></head><body style=\"backgrou
 EOF
 
 tags = local.common_tags
-
 }

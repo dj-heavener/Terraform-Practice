@@ -31,7 +31,7 @@ variable "enable_dns_hostnames"{
 variable "vpc_cidr_block" {
     type = string
     description = "Base CIDR block for VPC"
-    default = "10.0.0.0/24"
+    default = "10.0.0.0/16"
 }
 
 variable "vpc_subnets_cidr_block" {

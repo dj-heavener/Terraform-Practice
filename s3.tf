@@ -71,23 +71,24 @@ resource "aws_s3_object" "website" {
 ##aws_iam_role
 resource "aws_iam_role" "allow_nginx_s3" {
   name = "allow_nginx_s3"
-  assume_rule_policy = <<EOF
-  {
-   "Version" : "2012-10-17",
-    "Statement" : [
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
       {
-        "Action" : "sts:AssumeRole",
-        "Principal": {
-          "Service" : "ec2.amazonaws.com"
-        },
-        "Effect" :  "Allow",
-        "Sid" : ""
-      }
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
     ]
-  }
-EOF
-  tags = local.common_tags
+  })
+
+tags = local.common_tags
 }
+
 
 ##aws_iam_role_policy
 

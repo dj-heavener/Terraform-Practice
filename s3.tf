@@ -71,23 +71,21 @@ resource "aws_s3_object" "website" {
 ##aws_iam_role
 resource "aws_iam_role" "allow_nginx_s3" {
   name = "allow_nginx_s3"
-
-  assume_role_policy = <<EOF
-{
-    "Version" : "2012-10-17",
-    "Statment" : [
-        {
-            "Action" : "sts:AssumeRole",
-            "Principal" : {
-                "Service" : "ec2.amazonaws.com"
-            },
-            "Effect" : "Allow",
-            "Sid": ""
-        }
+  assume_rule_policy = <<EOF
+  {
+   "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Action" : "sts:AssumeRole",
+        "Principal": {
+          "Service" : "ec2.amazonaws.com"
+        },
+        "Effect" :  "Allow",
+        "Sid" : ""
+      }
     ]
-}
+  }
 EOF
-
   tags = local.common_tags
 }
 

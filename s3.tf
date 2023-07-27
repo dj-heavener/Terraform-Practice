@@ -70,9 +70,9 @@ resource "aws_s3_object" "website" {
 
 ##aws_iam_role
 resource "aws_iam_role" "allow_nginx_s3" {
-    name = "allow_nginx_s3"
+  name = "allow_nginx_s3"
 
-    assume_role_policy = <<EOF
+  assume_role_policy = <<EOF
 {
     "Version" : "2012-10-17",
     "Statment" : [
@@ -88,16 +88,16 @@ resource "aws_iam_role" "allow_nginx_s3" {
 }
 EOF
 
-    tags = local.common_tags
+  tags = local.common_tags
 }
 
 ##aws_iam_role_policy
 
 resource "aws_iam_role_policy" "allow_s3_all" {
-    name = "allow_s3_all"
-    role = aws_iam_role.allow_nginx_s3.name
+  name = "allow_s3_all"
+  role = aws_iam_role.allow_nginx_s3.name
 
-    policy = <<EOF
+  policy = <<EOF
 {
     "Version": "2012-10-17",
     "Statement" : [
@@ -118,9 +118,9 @@ EOF
 
 ##aws_iam_instance_profile
 resource "aws_iam_instance_profile" "nginx_profile" {
-    name = "nginx_profile"
-    role = aws_iam_role.allow_nginx_s3.name
+  name = "nginx_profile"
+  role = aws_iam_role.allow_nginx_s3.name
 
-    tags = local.common_tags
+  tags = local.common_tags
 }
 
